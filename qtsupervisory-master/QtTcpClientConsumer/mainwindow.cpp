@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QDateTime>
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QWidget *parent):
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
@@ -14,10 +14,74 @@ MainWindow::MainWindow(QWidget *parent) :
           SIGNAL(clicked(bool)),
           this,
           SLOT(getData()));
+
+  connect(ui->pushButton_connect,
+          SIGNAL(clicked(bool)),
+          this,
+          SLOT(connectIP()));
+
+  connect(ui->pushButton_disconnect,
+          SIGNAL(clicked(bool)),
+          this,
+          SLOT(disconnectIP()));
+
+  connect(ui->pushButton_start,
+          SIGNAL(clicked(bool)),
+          this,
+          SLOT(startdata()));
+
+  connect(ui->pushButton_stop,
+          SIGNAL(clicked(bool)),
+          this,
+          SLOT(stopdata()));
+
+  connect(ui->pushButton_update,
+          SIGNAL(clicked(bool)),
+          this,
+          SLOT(updatelist()));
+
+}
+
+void MainWindow::connectIP(){
+    tcpConnect();
+}
+
+void MainWindow::disconnectIP(){
+    if(socket->state()== QAbstractSocket::ConnectedState){
+        socket->disconnectFromHost();
+        qDebug() << "disconnected";
+    }
+}
+
+void MainWindow::updatelist(){
+
+}
+
+void MainWindow::startdata(){
+    if(timerId==0){
+        timerId= startTimer(ui->horizontalSlider->value());
+        qDebug() << "timer criado";
+    } else {
+        killTimer(timerId);
+        timerId = startTimer(ui->horizontalSlider->value());
+        qDebug() << "timer criado";
+    }
+}
+
+
+void MainWindow::timerEvent(QTimerEvent * q){
+
+}
+
+void MainWindow::stopdata(){
+    if(timerId!=0){
+        killTimer(timerId);
+    }
 }
 
 void MainWindow::tcpConnect(){
-  socket->connectToHost("127.0.0.1",1234);
+  QString host_ip = ui->lineEditIP->text();
+  socket->connectToHost(host_ip,1234);
   if(socket->waitForConnected(3000)){
     qDebug() << "Connected";
   }
