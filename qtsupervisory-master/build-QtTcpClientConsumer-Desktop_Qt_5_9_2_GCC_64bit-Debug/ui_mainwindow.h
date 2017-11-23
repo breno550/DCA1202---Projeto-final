@@ -27,6 +27,7 @@
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "plotter.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -34,8 +35,7 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QPushButton *pushButtonGet;
-    QWidget *widget;
+    Plotter *widget;
     QWidget *layoutWidget;
     QFormLayout *formLayout;
     QHBoxLayout *horizontalLayout;
@@ -63,10 +63,7 @@ public:
         MainWindow->resize(773, 536);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        pushButtonGet = new QPushButton(centralWidget);
-        pushButtonGet->setObjectName(QStringLiteral("pushButtonGet"));
-        pushButtonGet->setGeometry(QRect(140, 450, 101, 29));
-        widget = new QWidget(centralWidget);
+        widget = new Plotter(centralWidget);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setGeometry(QRect(330, 20, 401, 421));
         layoutWidget = new QWidget(centralWidget);
@@ -172,7 +169,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        pushButtonGet->setText(QApplication::translate("MainWindow", "getData", Q_NULLPTR));
         pushButton_connect->setText(QApplication::translate("MainWindow", "Connect", Q_NULLPTR));
         pushButton_disconnect->setText(QApplication::translate("MainWindow", "Disconnect", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "IP do servidor", Q_NULLPTR));

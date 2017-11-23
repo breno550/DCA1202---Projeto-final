@@ -10,10 +10,10 @@ MainWindow::MainWindow(QWidget *parent):
   socket = new QTcpSocket(this);
   tcpConnect();
 
-  connect(ui->pushButtonGet,
+  /*connect(ui->pushButtonG,
           SIGNAL(clicked(bool)),
           this,
-          SLOT(getData()));
+          SLOT(getData()));*/
 
   connect(ui->pushButton_connect,
           SIGNAL(clicked(bool)),
