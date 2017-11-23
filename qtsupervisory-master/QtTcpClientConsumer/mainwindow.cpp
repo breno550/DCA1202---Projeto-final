@@ -43,12 +43,13 @@ MainWindow::MainWindow(QWidget *parent):
 }
 
 void MainWindow::connectIP(){
-    tcpConnect();
+    MainWindow::getData();
 }
 
 void MainWindow::disconnectIP(){
-    if(socket->state()== QAbstractSocket::ConnectedState){
+    if(socket->state()!= QAbstractSocket::ConnectedState){
         socket->disconnectFromHost();
+        ui->textEdit->insertPlainText("disconnect");
         qDebug() << "disconnected";
     }
 }

@@ -18,6 +18,9 @@ public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
   
+
+public slots:
+  void getData();
   void timerEvent(QTimerEvent *e);
   void connectIP();
   void disconnectIP();
@@ -25,8 +28,6 @@ public:
   void startdata();
   void stopdata();
   void tcpConnect();
-public slots:
-  void getData();
 
 private:
   Ui::MainWindow *ui;
