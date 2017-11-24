@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent):
 }
 
 void MainWindow::connectIP(){
-    MainWindow::getData();
+    MainWindow::tcpConnect();
 }
 
 void MainWindow::disconnectIP(){
@@ -59,14 +59,15 @@ void MainWindow::updatelist(){
 }
 
 void MainWindow::startdata(){
-    if(timerId==0){
+    MainWindow::getData();
+    /*if(timerId==0){
         timerId= startTimer(ui->horizontalSlider->value());
         qDebug() << "timer criado";
     } else {
         killTimer(timerId);
         timerId = startTimer(ui->horizontalSlider->value());
         qDebug() << "timer criado";
-    }
+    }*/
 }
 
 
