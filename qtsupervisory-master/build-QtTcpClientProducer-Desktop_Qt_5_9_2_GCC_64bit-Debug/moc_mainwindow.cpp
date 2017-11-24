@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../QtTcpClientConsumer/mainwindow.h"
+#include "../QtTcpClientProducer/mainwindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[12];
-    char stringdata0[110];
+    QByteArrayData data[10];
+    char stringdata0[88];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,22 +32,20 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 7), // "getData"
-QT_MOC_LITERAL(2, 19, 0), // ""
-QT_MOC_LITERAL(3, 20, 10), // "timerEvent"
-QT_MOC_LITERAL(4, 31, 12), // "QTimerEvent*"
-QT_MOC_LITERAL(5, 44, 1), // "e"
-QT_MOC_LITERAL(6, 46, 9), // "connectIP"
-QT_MOC_LITERAL(7, 56, 12), // "disconnectIP"
-QT_MOC_LITERAL(8, 69, 10), // "updatelist"
-QT_MOC_LITERAL(9, 80, 9), // "startdata"
-QT_MOC_LITERAL(10, 90, 8), // "stopdata"
-QT_MOC_LITERAL(11, 99, 10) // "tcpConnect"
+QT_MOC_LITERAL(1, 11, 10), // "timerEvent"
+QT_MOC_LITERAL(2, 22, 0), // ""
+QT_MOC_LITERAL(3, 23, 12), // "QTimerEvent*"
+QT_MOC_LITERAL(4, 36, 1), // "e"
+QT_MOC_LITERAL(5, 38, 7), // "putData"
+QT_MOC_LITERAL(6, 46, 9), // "startData"
+QT_MOC_LITERAL(7, 56, 8), // "stopData"
+QT_MOC_LITERAL(8, 65, 9), // "connectIP"
+QT_MOC_LITERAL(9, 75, 12) // "disconnectIP"
 
     },
-    "MainWindow\0getData\0\0timerEvent\0"
-    "QTimerEvent*\0e\0connectIP\0disconnectIP\0"
-    "updatelist\0startdata\0stopdata\0tcpConnect"
+    "MainWindow\0timerEvent\0\0QTimerEvent*\0"
+    "e\0putData\0startData\0stopData\0connectIP\0"
+    "disconnectIP"
 };
 #undef QT_MOC_LITERAL
 
@@ -57,7 +55,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -65,19 +63,15 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   54,    2, 0x0a /* Public */,
-       3,    1,   55,    2, 0x0a /* Public */,
-       6,    0,   58,    2, 0x0a /* Public */,
-       7,    0,   59,    2, 0x0a /* Public */,
-       8,    0,   60,    2, 0x0a /* Public */,
-       9,    0,   61,    2, 0x0a /* Public */,
-      10,    0,   62,    2, 0x0a /* Public */,
-      11,    0,   63,    2, 0x0a /* Public */,
+       1,    1,   44,    2, 0x0a /* Public */,
+       5,    0,   47,    2, 0x0a /* Public */,
+       6,    0,   48,    2, 0x0a /* Public */,
+       7,    0,   49,    2, 0x0a /* Public */,
+       8,    0,   50,    2, 0x0a /* Public */,
+       9,    0,   51,    2, 0x0a /* Public */,
 
  // slots: parameters
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 4,    5,
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -93,14 +87,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->getData(); break;
-        case 1: _t->timerEvent((*reinterpret_cast< QTimerEvent*(*)>(_a[1]))); break;
-        case 2: _t->connectIP(); break;
-        case 3: _t->disconnectIP(); break;
-        case 4: _t->updatelist(); break;
-        case 5: _t->startdata(); break;
-        case 6: _t->stopdata(); break;
-        case 7: _t->tcpConnect(); break;
+        case 0: _t->timerEvent((*reinterpret_cast< QTimerEvent*(*)>(_a[1]))); break;
+        case 1: _t->putData(); break;
+        case 2: _t->startData(); break;
+        case 3: _t->stopData(); break;
+        case 4: _t->connectIP(); break;
+        case 5: _t->disconnectIP(); break;
         default: ;
         }
     }
@@ -131,13 +123,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 6;
     }
     return _id;
 }

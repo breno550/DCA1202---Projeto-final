@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QDateTime>
 
+/*luiz eh gayzao*/
+
 MainWindow::MainWindow(QWidget *parent):
   QMainWindow(parent),
   ui(new Ui::MainWindow)
@@ -43,12 +45,13 @@ MainWindow::MainWindow(QWidget *parent):
 }
 
 void MainWindow::connectIP(){
-    tcpConnect();
+    MainWindow::tcpConnect();
 }
 
 void MainWindow::disconnectIP(){
-    if(socket->state()== QAbstractSocket::ConnectedState){
+    if(socket->state()!= QAbstractSocket::ConnectedState){
         socket->disconnectFromHost();
+        ui->textEdit->insertPlainText("disconnect");
         qDebug() << "disconnected";
     }
 }
@@ -58,14 +61,15 @@ void MainWindow::updatelist(){
 }
 
 void MainWindow::startdata(){
-    if(timerId==0){
+    MainWindow::getData();
+    /*if(timerId==0){
         timerId= startTimer(ui->horizontalSlider->value());
         qDebug() << "timer criado";
     } else {
         killTimer(timerId);
         timerId = startTimer(ui->horizontalSlider->value());
         qDebug() << "timer criado";
-    }
+    }*/
 }
 
 
