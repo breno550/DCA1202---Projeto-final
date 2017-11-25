@@ -1,8 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDateTime>
-#include <iostream>
 #include <QEvent>
+#include <iostream>
+
 using namespace std;
 
 
@@ -107,6 +108,8 @@ void MainWindow::getData(){
         QByteArray array;
         QStringList list;
         qint64 thetime;
+        Plotter cord;
+        QVector<int> cordenadas;
         cout << "to get data..." << endl;
         if(socket->state() == QAbstractSocket::ConnectedState){
           if(socket->isOpen()){
@@ -124,12 +127,14 @@ void MainWindow::getData(){
                 thetime = str.toLongLong(&ok);
                 str = list.at(1);
                 resultado = QString::number(thetime);
-                cout << resultado.toStdString() << ": " << str.toStdString() << endl;
+                //cout << resultado.toStdString() << ": " << str.toStdString() << endl;
+                cordenadas.push_back(str.toInt());
               }
             }
           }
-        }
-      }
+       }
+        cord.setCorde(cordenadas);
+    }
 }
 
 void MainWindow::getList(){
