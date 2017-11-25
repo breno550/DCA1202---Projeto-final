@@ -2,12 +2,14 @@
 #include <QPainter>
 #include <QBrush>
 #include <QPen>
+#include <iostream>
+#include <QVector>
+using namespace std;
 
 #define PI 3.1415
 
-Plotter::Plotter(QWidget *parent) : QWidget(parent)
-{
-
+Plotter::Plotter(QWidget *parent) : QWidget(parent){
+    startTimer(2000);
 }
 
 void Plotter::paintEvent(QPaintEvent *event){
@@ -15,7 +17,6 @@ void Plotter::paintEvent(QPaintEvent *event){
     QBrush brush;
     QPen pen;
 
-    int x1, x2, y1, y2;
     //brush cor amarela
     brush.setColor(QColor(255, 255, 100));
     brush.setStyle(Qt::SolidPattern);
@@ -33,11 +34,18 @@ void Plotter::paintEvent(QPaintEvent *event){
     pen.setColor(QColor(255, 180, 0));
     painter.setPen(pen);
 
-    //desenha linha
-    painter.drawLine(0, height()/2,width(), height()/2);
+    cout<<x<<" "<< x2<<endl;
+    painter.drawLine(x, 0, x2, 0);
 
-    for(int i = 1; i < width();i++){
-        painter.drawLine(x1, y1, x2, y2);
-    }
-    //y = sin(2*PI*freq*t+angulo)
+   // painter.drawLine(cordenadas[i], 0, cordenadas[i+1], 0);
+}
+
+void Plotter::setCorde(QVector<int> _cord){
+    x = _cord[i];
+    x2 = _cord[i+1];
+}
+
+void Plotter::timerEvent(QTimerEvent *event){
+    i+=2;
+    repaint();
 }

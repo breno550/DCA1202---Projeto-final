@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[12];
-    char stringdata0[110];
+    QByteArrayData data[13];
+    char stringdata0[118];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,12 +42,14 @@ QT_MOC_LITERAL(7, 56, 12), // "disconnectIP"
 QT_MOC_LITERAL(8, 69, 10), // "updatelist"
 QT_MOC_LITERAL(9, 80, 9), // "startdata"
 QT_MOC_LITERAL(10, 90, 8), // "stopdata"
-QT_MOC_LITERAL(11, 99, 10) // "tcpConnect"
+QT_MOC_LITERAL(11, 99, 10), // "tcpConnect"
+QT_MOC_LITERAL(12, 110, 7) // "getList"
 
     },
     "MainWindow\0getData\0\0timerEvent\0"
     "QTimerEvent*\0e\0connectIP\0disconnectIP\0"
-    "updatelist\0startdata\0stopdata\0tcpConnect"
+    "updatelist\0startdata\0stopdata\0tcpConnect\0"
+    "getList"
 };
 #undef QT_MOC_LITERAL
 
@@ -57,7 +59,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -65,18 +67,20 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   54,    2, 0x0a /* Public */,
-       3,    1,   55,    2, 0x0a /* Public */,
-       6,    0,   58,    2, 0x0a /* Public */,
-       7,    0,   59,    2, 0x0a /* Public */,
-       8,    0,   60,    2, 0x0a /* Public */,
-       9,    0,   61,    2, 0x0a /* Public */,
-      10,    0,   62,    2, 0x0a /* Public */,
-      11,    0,   63,    2, 0x0a /* Public */,
+       1,    0,   59,    2, 0x0a /* Public */,
+       3,    1,   60,    2, 0x0a /* Public */,
+       6,    0,   63,    2, 0x0a /* Public */,
+       7,    0,   64,    2, 0x0a /* Public */,
+       8,    0,   65,    2, 0x0a /* Public */,
+       9,    0,   66,    2, 0x0a /* Public */,
+      10,    0,   67,    2, 0x0a /* Public */,
+      11,    0,   68,    2, 0x0a /* Public */,
+      12,    0,   69,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 4,    5,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -101,6 +105,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->startdata(); break;
         case 6: _t->stopdata(); break;
         case 7: _t->tcpConnect(); break;
+        case 8: _t->getList(); break;
         default: ;
         }
     }
@@ -131,13 +136,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

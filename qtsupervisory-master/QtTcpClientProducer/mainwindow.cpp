@@ -38,9 +38,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::tcpConnect(){
   QString host_ip = ui->lineEditIp->text();
+  QString str = "connected\r\n";
   socket->connectToHost(host_ip,1234);
   if(socket->waitForConnected(3000)){
-    ui->plainTextEdit->insertPlainText("Connected\r\n");
+    ui->listWidget->addItem(str);
     qDebug() << "Connected";
   }
   else{
@@ -64,7 +65,7 @@ void MainWindow::putData(){
   if(socket->state()== QAbstractSocket::ConnectedState){
     msecdate = QDateTime::currentDateTime().toMSecsSinceEpoch();
     str = "set "+ QString::number(msecdate) + " " + QString::number(qrand()% (max - min) + min) + "\r\n";
-    ui->plainTextEdit->insertPlainText(str);
+    ui->listWidget->addItem(str);
       qDebug() << str;
       qDebug() << socket->write(str.toStdString().c_str()) << " bytes written";
       if(socket->waitForBytesWritten(3000)){
@@ -118,9 +119,10 @@ void MainWindow::connectIP(){
 */
 
 void MainWindow::disconnectIP(){
+    QString str = "Disconnected\r\n";
     if(socket->state()== QAbstractSocket::ConnectedState){
         socket->disconnectFromHost();
-        ui->plainTextEdit->insertPlainText("Disconnected.\r\n");
+        ui->listWidget->addItem(str);
     }
 }
 
