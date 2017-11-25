@@ -28,6 +28,7 @@ public slots:
   void startdata();
   void stopdata();
   void tcpConnect();
+  void getList();
 
 private:
   Ui::MainWindow *ui;

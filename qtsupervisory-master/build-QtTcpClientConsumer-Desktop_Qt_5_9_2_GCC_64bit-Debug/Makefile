@@ -1308,6 +1308,7 @@ mainwindow.o: ../QtTcpClientConsumer/mainwindow.cpp ../QtTcpClientConsumer/mainw
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtoolbar.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QVBoxLayout \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QWidget \
+		../QtTcpClientConsumer/plotter.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QDateTime \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../QtTcpClientConsumer/mainwindow.cpp

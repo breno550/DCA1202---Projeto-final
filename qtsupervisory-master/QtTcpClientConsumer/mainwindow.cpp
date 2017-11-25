@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDateTime>
+#include <iostream>
+#include <QEvent>
+using namespace std;
 
-/*luiz eh gayzao*/
 
 MainWindow::MainWindow(QWidget *parent):
   QMainWindow(parent),
@@ -45,36 +47,39 @@ MainWindow::MainWindow(QWidget *parent):
 }
 
 void MainWindow::connectIP(){
+    ui->pushButton_start->setEnabled(true);
+    ui->pushButton_stop->setEnabled(true);
+
     MainWindow::tcpConnect();
 }
 
 void MainWindow::disconnectIP(){
     if(socket->state()!= QAbstractSocket::ConnectedState){
         socket->disconnectFromHost();
-        ui->textEdit->insertPlainText("disconnect");
-        qDebug() << "disconnected";
+        cout << "disconnected" << endl;
     }
+    ui->listWidget->clear();
 }
 
 void MainWindow::updatelist(){
-
+    ui->listWidget->clear();
+    MainWindow::getList();
 }
 
 void MainWindow::startdata(){
-    MainWindow::getData();
-    /*if(timerId==0){
+    if(timerId==0){
         timerId= startTimer(ui->horizontalSlider->value());
-        qDebug() << "timer criado";
+        cout << "timer criado" << endl;
     } else {
         killTimer(timerId);
         timerId = startTimer(ui->horizontalSlider->value());
-        qDebug() << "timer criado";
-    }*/
+        cout << "timer criado" << endl;
+    }
 }
 
 
 void MainWindow::timerEvent(QTimerEvent * q){
-
+    MainWindow::getData();
 }
 
 void MainWindow::stopdata(){
@@ -87,39 +92,62 @@ void MainWindow::tcpConnect(){
   QString host_ip = ui->lineEditIP->text();
   socket->connectToHost(host_ip,1234);
   if(socket->waitForConnected(3000)){
-    qDebug() << "Connected";
+    cout << "Connected" << endl;
   }
   else{
-    qDebug() << "Disconnected";
+    cout << "Disconnected" << endl;
   }
 }
 
 void MainWindow::getData(){
-  QString str;
-  QByteArray array;
-  QStringList list;
-  qint64 thetime;
-  qDebug() << "to get data...";
-  if(socket->state() == QAbstractSocket::ConnectedState){
-    if(socket->isOpen()){
-      qDebug() << "reading...";
-      socket->write("get 127.0.0.1 5\r\n");
-      socket->waitForBytesWritten();
-      socket->waitForReadyRead();
-      qDebug() << socket->bytesAvailable();
-      while(socket->bytesAvailable()){
-        str = socket->readLine().replace("\n","").replace("\r","");
-        list = str.split(" ");
-        if(list.size() == 2){
-          bool ok;
-          str = list.at(0);
-          thetime = str.toLongLong(&ok);
-          str = list.at(1);
-          qDebug() << thetime << ": " << str;
+    if(ui->listWidget->currentItem()->isSelected()){
+        QString get_data = "get " + ui->listWidget->currentItem()->text() + " 30\r\n";
+        QString resultado;
+        QString str;
+        QByteArray array;
+        QStringList list;
+        qint64 thetime;
+        cout << "to get data..." << endl;
+        if(socket->state() == QAbstractSocket::ConnectedState){
+          if(socket->isOpen()){
+            cout << "reading..." << endl;
+            socket->write(get_data.toStdString().c_str());
+            socket->waitForBytesWritten();
+            socket->waitForReadyRead();
+            cout << socket->bytesAvailable() << "bytes avaiable" << endl;
+            while(socket->bytesAvailable()){
+              str = socket->readLine().replace("\n","").replace("\r","");
+              list = str.split(" ");
+              if(list.size() == 2){
+                bool ok;
+                str = list.at(0);
+                thetime = str.toLongLong(&ok);
+                str = list.at(1);
+                resultado = QString::number(thetime);
+                cout << resultado.toStdString() << ": " << str.toStdString() << endl;
+              }
+            }
+          }
         }
       }
+}
+
+void MainWindow::getList(){
+    QString str;
+    if(socket->state() == QAbstractSocket::ConnectedState){
+        if(socket->isOpen()){
+            cout << "getting list" << endl;
+            socket->write("list");
+            socket->waitForBytesWritten();
+            socket->waitForReadyRead();
+            cout << socket->bytesAvailable() << "bytes avaiable" << endl;
+            while(socket->bytesAvailable()){
+                str = socket->readLine().replace("\r", "").replace("\n", "");
+                cout << str.toStdString()<<endl;
+                ui->listWidget->addItem(str);
+            }
+        }
     }
-  }
 }
 
 

@@ -13,17 +13,16 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -36,22 +35,23 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     Plotter *widget;
-    QWidget *layoutWidget;
-    QFormLayout *formLayout;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton_connect;
-    QPushButton *pushButton_disconnect;
+    QWidget *widget1;
+    QVBoxLayout *verticalLayout_4;
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QLineEdit *lineEditIP;
-    QTextEdit *textEdit;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *pushButton_connect;
+    QPushButton *pushButton_disconnect;
+    QVBoxLayout *verticalLayout_2;
+    QListWidget *listWidget;
+    QPushButton *pushButton_update;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *label_2;
+    QSlider *horizontalSlider;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton_start;
     QPushButton *pushButton_stop;
-    QPushButton *pushButton_update;
-    QVBoxLayout *verticalLayout_2;
-    QLabel *label_2;
-    QSlider *horizontalSlider;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -65,89 +65,99 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         widget = new Plotter(centralWidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(330, 20, 401, 421));
-        layoutWidget = new QWidget(centralWidget);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(30, 10, 283, 441));
-        formLayout = new QFormLayout(layoutWidget);
-        formLayout->setSpacing(6);
-        formLayout->setContentsMargins(11, 11, 11, 11);
-        formLayout->setObjectName(QStringLiteral("formLayout"));
-        formLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        pushButton_connect = new QPushButton(layoutWidget);
-        pushButton_connect->setObjectName(QStringLiteral("pushButton_connect"));
-
-        horizontalLayout->addWidget(pushButton_connect);
-
-        pushButton_disconnect = new QPushButton(layoutWidget);
-        pushButton_disconnect->setObjectName(QStringLiteral("pushButton_disconnect"));
-
-        horizontalLayout->addWidget(pushButton_disconnect);
-
-
-        formLayout->setLayout(1, QFormLayout::SpanningRole, horizontalLayout);
-
+        widget->setGeometry(QRect(310, 20, 401, 421));
+        widget1 = new QWidget(centralWidget);
+        widget1->setObjectName(QStringLiteral("widget1"));
+        widget1->setGeometry(QRect(31, 12, 260, 441));
+        verticalLayout_4 = new QVBoxLayout(widget1);
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        label = new QLabel(layoutWidget);
+        label = new QLabel(widget1);
         label->setObjectName(QStringLiteral("label"));
 
         verticalLayout->addWidget(label);
 
-        lineEditIP = new QLineEdit(layoutWidget);
+        lineEditIP = new QLineEdit(widget1);
         lineEditIP->setObjectName(QStringLiteral("lineEditIP"));
 
         verticalLayout->addWidget(lineEditIP);
 
 
-        formLayout->setLayout(0, QFormLayout::SpanningRole, verticalLayout);
+        verticalLayout_4->addLayout(verticalLayout);
 
-        textEdit = new QTextEdit(layoutWidget);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        pushButton_connect = new QPushButton(widget1);
+        pushButton_connect->setObjectName(QStringLiteral("pushButton_connect"));
 
-        formLayout->setWidget(2, QFormLayout::SpanningRole, textEdit);
+        horizontalLayout->addWidget(pushButton_connect);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        pushButton_start = new QPushButton(layoutWidget);
-        pushButton_start->setObjectName(QStringLiteral("pushButton_start"));
+        pushButton_disconnect = new QPushButton(widget1);
+        pushButton_disconnect->setObjectName(QStringLiteral("pushButton_disconnect"));
 
-        horizontalLayout_2->addWidget(pushButton_start);
-
-        pushButton_stop = new QPushButton(layoutWidget);
-        pushButton_stop->setObjectName(QStringLiteral("pushButton_stop"));
-
-        horizontalLayout_2->addWidget(pushButton_stop);
+        horizontalLayout->addWidget(pushButton_disconnect);
 
 
-        formLayout->setLayout(5, QFormLayout::SpanningRole, horizontalLayout_2);
-
-        pushButton_update = new QPushButton(layoutWidget);
-        pushButton_update->setObjectName(QStringLiteral("pushButton_update"));
-
-        formLayout->setWidget(3, QFormLayout::FieldRole, pushButton_update);
+        verticalLayout_4->addLayout(horizontalLayout);
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        label_2 = new QLabel(layoutWidget);
+        listWidget = new QListWidget(widget1);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
+
+        verticalLayout_2->addWidget(listWidget);
+
+        pushButton_update = new QPushButton(widget1);
+        pushButton_update->setObjectName(QStringLiteral("pushButton_update"));
+
+        verticalLayout_2->addWidget(pushButton_update);
+
+
+        verticalLayout_4->addLayout(verticalLayout_2);
+
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        label_2 = new QLabel(widget1);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        verticalLayout_2->addWidget(label_2);
+        verticalLayout_3->addWidget(label_2);
 
-        horizontalSlider = new QSlider(layoutWidget);
+        horizontalSlider = new QSlider(widget1);
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setMinimum(500);
+        horizontalSlider->setMaximum(10000);
         horizontalSlider->setOrientation(Qt::Horizontal);
 
-        verticalLayout_2->addWidget(horizontalSlider);
+        verticalLayout_3->addWidget(horizontalSlider);
 
 
-        formLayout->setLayout(4, QFormLayout::SpanningRole, verticalLayout_2);
+        verticalLayout_4->addLayout(verticalLayout_3);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        pushButton_start = new QPushButton(widget1);
+        pushButton_start->setObjectName(QStringLiteral("pushButton_start"));
+        pushButton_start->setEnabled(false);
+
+        horizontalLayout_2->addWidget(pushButton_start);
+
+        pushButton_stop = new QPushButton(widget1);
+        pushButton_stop->setObjectName(QStringLiteral("pushButton_stop"));
+        pushButton_stop->setEnabled(false);
+
+        horizontalLayout_2->addWidget(pushButton_stop);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_2);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -169,13 +179,13 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "IP do servidor", Q_NULLPTR));
         pushButton_connect->setText(QApplication::translate("MainWindow", "Connect", Q_NULLPTR));
         pushButton_disconnect->setText(QApplication::translate("MainWindow", "Disconnect", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindow", "IP do servidor", Q_NULLPTR));
-        pushButton_start->setText(QApplication::translate("MainWindow", "Start", Q_NULLPTR));
-        pushButton_stop->setText(QApplication::translate("MainWindow", "Stop", Q_NULLPTR));
         pushButton_update->setText(QApplication::translate("MainWindow", "Update", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Timing", Q_NULLPTR));
+        pushButton_start->setText(QApplication::translate("MainWindow", "Start", Q_NULLPTR));
+        pushButton_stop->setText(QApplication::translate("MainWindow", "Stop", Q_NULLPTR));
     } // retranslateUi
 
 };
