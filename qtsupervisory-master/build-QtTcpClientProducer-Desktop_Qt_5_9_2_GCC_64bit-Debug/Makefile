@@ -215,7 +215,6 @@ DIST          = /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf \
-		../QtTcpClientProducer/.qmake.stash \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -408,7 +407,6 @@ Makefile: ../QtTcpClientProducer/QtTcpClientProducer.pro /home/breno/Qt/5.9.2/gc
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -594,7 +592,6 @@ Makefile: ../QtTcpClientProducer/QtTcpClientProducer.pro /home/breno/Qt/5.9.2/gc
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf:

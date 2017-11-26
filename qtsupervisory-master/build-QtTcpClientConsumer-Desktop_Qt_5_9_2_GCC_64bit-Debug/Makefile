@@ -219,7 +219,6 @@ DIST          = /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf \
-		../QtTcpClientConsumer/.qmake.stash \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -414,7 +413,6 @@ Makefile: ../QtTcpClientConsumer/QtTcpClientConsumer.pro /home/breno/Qt/5.9.2/gc
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/breno/Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -600,7 +598,6 @@ Makefile: ../QtTcpClientConsumer/QtTcpClientConsumer.pro /home/breno/Qt/5.9.2/gc
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf:
 /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -677,8 +674,9 @@ moc_predefs.h: /home/breno/Qt/5.9.2/gcc_64/mkspecs/features/data/dummy.cpp
 compiler_moc_header_make_all: moc_mainwindow.cpp moc_plotter.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_plotter.cpp
-moc_mainwindow.cpp: /home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
+moc_mainwindow.cpp: ../QtTcpClientConsumer/plotter.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QWidget \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qwidget.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtguiglobal.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qglobal.h \
@@ -704,7 +702,6 @@ moc_mainwindow.cpp: /home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qversiontagging.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtgui-config.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qwidget.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qwindowdefs.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qobjectdefs.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qnamespace.h \
@@ -778,6 +775,9 @@ moc_mainwindow.cpp: /home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qfiledevice.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qvector2d.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QVector \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qicon.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtNetwork/QTcpSocket \
@@ -891,6 +891,7 @@ moc_plotter.cpp: /home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QWidget \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qfiledevice.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qvector2d.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QVector \
 		../QtTcpClientConsumer/plotter.h \
 		moc_predefs.h \
 		/home/breno/Qt/5.9.2/gcc_64/bin/moc
@@ -1003,7 +1004,8 @@ ui_mainwindow.h: ../QtTcpClientConsumer/mainwindow.ui \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qfile.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qfiledevice.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qvector2d.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtouchdevice.h
+		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QVector
 	/home/breno/Qt/5.9.2/gcc_64/bin/uic ../QtTcpClientConsumer/mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
@@ -1017,8 +1019,9 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 main.o: ../QtTcpClientConsumer/main.cpp ../QtTcpClientConsumer/mainwindow.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
+		../QtTcpClientConsumer/plotter.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QWidget \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qwidget.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtguiglobal.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qglobal.h \
@@ -1044,7 +1047,6 @@ main.o: ../QtTcpClientConsumer/main.cpp ../QtTcpClientConsumer/mainwindow.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qversiontagging.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtgui-config.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qwidget.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qwindowdefs.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qobjectdefs.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qnamespace.h \
@@ -1118,6 +1120,9 @@ main.o: ../QtTcpClientConsumer/main.cpp ../QtTcpClientConsumer/mainwindow.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qfiledevice.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qvector2d.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QVector \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qicon.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtNetwork/QTcpSocket \
@@ -1136,8 +1141,9 @@ main.o: ../QtTcpClientConsumer/main.cpp ../QtTcpClientConsumer/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../QtTcpClientConsumer/main.cpp
 
 mainwindow.o: ../QtTcpClientConsumer/mainwindow.cpp ../QtTcpClientConsumer/mainwindow.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
+		../QtTcpClientConsumer/plotter.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QWidget \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qwidget.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtguiglobal.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qglobal.h \
@@ -1163,7 +1169,6 @@ mainwindow.o: ../QtTcpClientConsumer/mainwindow.cpp ../QtTcpClientConsumer/mainw
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qversiontagging.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtgui-config.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qwidget.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qwindowdefs.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qobjectdefs.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qnamespace.h \
@@ -1237,6 +1242,9 @@ mainwindow.o: ../QtTcpClientConsumer/mainwindow.cpp ../QtTcpClientConsumer/mainw
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qfiledevice.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qvector2d.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QVector \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qicon.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtNetwork/QTcpSocket \
@@ -1246,71 +1254,9 @@ mainwindow.o: ../QtTcpClientConsumer/mainwindow.cpp ../QtTcpClientConsumer/mainw
 		/home/breno/Qt/5.9.2/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QDebug \
 		ui_mainwindow.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QVariant \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QAction \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qaction.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qactiongroup.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QApplication \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qapplication.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qcoreapplication.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qeventloop.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qguiapplication.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qinputmethod.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QButtonGroup \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qbuttongroup.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QFormLayout \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qformlayout.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QLayout \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qlayout.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qlayoutitem.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qboxlayout.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qgridlayout.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QHBoxLayout \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QHeaderView \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qheaderview.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemview.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qframe.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qvalidator.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qslider.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QLabel \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qlabel.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QLineEdit \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qlineedit.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtextcursor.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtextformat.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qpen.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtextoption.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QMenuBar \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qmenubar.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qmenu.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QPushButton \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QSlider \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QStatusBar \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qstatusbar.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QTextEdit \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtextedit.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtextdocument.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QToolBar \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/qtoolbar.h \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QVBoxLayout \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtWidgets/QWidget \
-		../QtTcpClientConsumer/plotter.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QDateTime \
-		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qdatetime.h
+		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qdatetime.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../QtTcpClientConsumer/mainwindow.cpp
 
 plotter.o: ../QtTcpClientConsumer/plotter.cpp ../QtTcpClientConsumer/plotter.h \
@@ -1414,6 +1360,7 @@ plotter.o: ../QtTcpClientConsumer/plotter.cpp ../QtTcpClientConsumer/plotter.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/qfiledevice.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qvector2d.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/breno/Qt/5.9.2/gcc_64/include/QtCore/QVector \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/QPainter \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qpainter.h \
 		/home/breno/Qt/5.9.2/gcc_64/include/QtGui/qtextoption.h \

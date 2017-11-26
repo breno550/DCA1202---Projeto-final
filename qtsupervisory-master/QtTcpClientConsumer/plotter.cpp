@@ -12,7 +12,7 @@ Plotter::Plotter(QWidget *parent) : QWidget(parent){
     startTimer(2000);
 }
 
-void Plotter::paintEvent(QPaintEvent *event){
+void Plotter::paintEvent(QPaintEvent *event, QVector<int> _cord){
     QPainter painter(this);
     QBrush brush;
     QPen pen;
@@ -34,18 +34,23 @@ void Plotter::paintEvent(QPaintEvent *event){
     pen.setColor(QColor(255, 180, 0));
     painter.setPen(pen);
 
-    cout<<x<<" "<< x2<<endl;
-    painter.drawLine(x, 0, x2, 0);
-
-   // painter.drawLine(cordenadas[i], 0, cordenadas[i+1], 0);
+    coop = _cord;
+    cout<<coop.size()<<endl;
+    //cout<<coop.size();
+    for(int i = 0;i<coop.size();i+=2){
+        painter.drawLine(coop[i], 0, coop[i+1], 0);
+    }
 }
 
 void Plotter::setCorde(QVector<int> _cord){
-    x = _cord[i];
-    x2 = _cord[i+1];
+    coop = _cord;
+   /* cout<<_cord.size()<<"tamanho filha da puta"<<endl;
+    cout<<coop[j]<<endl;*/
+    entrousete=true;
+
 }
 
 void Plotter::timerEvent(QTimerEvent *event){
-    i+=2;
+    j+=2;
     repaint();
 }

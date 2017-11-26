@@ -171,6 +171,7 @@ public:
 
         horizontalSliderTimming = new QSlider(widget);
         horizontalSliderTimming->setObjectName(QStringLiteral("horizontalSliderTimming"));
+        horizontalSliderTimming->setMinimum(500);
         horizontalSliderTimming->setMaximum(10000);
         horizontalSliderTimming->setOrientation(Qt::Horizontal);
 

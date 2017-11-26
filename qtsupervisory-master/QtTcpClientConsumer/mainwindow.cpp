@@ -15,11 +15,6 @@ MainWindow::MainWindow(QWidget *parent):
   socket = new QTcpSocket(this);
   tcpConnect();
 
-  /*connect(ui->pushButtonG,
-          SIGNAL(clicked(bool)),
-          this,
-          SLOT(getData()));*/
-
   connect(ui->pushButton_connect,
           SIGNAL(clicked(bool)),
           this,
@@ -129,11 +124,12 @@ void MainWindow::getData(){
                 resultado = QString::number(thetime);
                 //cout << resultado.toStdString() << ": " << str.toStdString() << endl;
                 cordenadas.push_back(str.toInt());
+
+
               }
             }
           }
        }
-        cord.setCorde(cordenadas);
     }
 }
 
