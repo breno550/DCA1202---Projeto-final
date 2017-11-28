@@ -7,17 +7,15 @@ class Plotter : public QWidget
 {
     Q_OBJECT
 private:
-    bool entrousete=false;
-    int i=0;
-    int j=0;
-    int x=0;
-    int x2=0;
-    QVector<int> coop;
+    long double d_max=0, d_min=0;
+    long long t_max=0, t_min=0;
+    QVector<long double> dado;
+    QVector<long long> tempo;
 public:
     explicit Plotter(QWidget *parent = nullptr);
-    void paintEvent(QPaintEvent *event, QVector<int> _cord);
-    void timerEvent(QTimerEvent *event);
-    void setCorde(QVector<int> _cord);
+    void paintEvent(QPaintEvent *event);
+    void setCorde(QVector<long double> _cord);
+    void setTemp(QVector<long long> _temp);
 signals:
 
 public slots:

@@ -9,10 +9,10 @@ using namespace std;
 #define PI 3.1415
 
 Plotter::Plotter(QWidget *parent) : QWidget(parent){
-    startTimer(2000);
+
 }
 
-void Plotter::paintEvent(QPaintEvent *event, QVector<int> _cord){
+void Plotter::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     QBrush brush;
     QPen pen;
@@ -34,23 +34,66 @@ void Plotter::paintEvent(QPaintEvent *event, QVector<int> _cord){
     pen.setColor(QColor(255, 180, 0));
     painter.setPen(pen);
 
-    coop = _cord;
-    cout<<coop.size()<<endl;
-    //cout<<coop.size();
-    for(int i = 0;i<coop.size();i+=2){
-        painter.drawLine(coop[i], 0, coop[i+1], 0);
+    /*for(int i=0;i<dado.size();i+=2){
+       if(dado.isEmpty()==false && tempo.isEmpty()==false){
+           cout<<"worked";
+           painter.drawLine(tempo[i], dado[i], tempo[i+1], dado[i+1]);
+       }
+    }*/
+    //painter.drawLine(1,4,width(), 0);
+}
+
+void Plotter::setCorde(QVector<long double> _cord){
+    d_max = _cord[0];
+    d_min = _cord[0];
+
+      //acha min e max
+    for(int i=0;i<_cord.size();i++){
+        if(_cord[i] < d_min)
+            d_min = _cord[i];
+
+        if(_cord[i] > d_max)
+            d_max = _cord[i];
     }
-}
+    cout<<"\n //////////////////d_max e d_min ///////////"<<endl;
+    cout<<"d_max = "<<d_max<<endl;
+    cout<<"d_min = "<<d_min<<endl;
 
-void Plotter::setCorde(QVector<int> _cord){
-    coop = _cord;
-   /* cout<<_cord.size()<<"tamanho filha da puta"<<endl;
-    cout<<coop[j]<<endl;*/
-    entrousete=true;
+    cout<<"\n /////////// dados before vector e after //////////"<<endl;
 
-}
-
-void Plotter::timerEvent(QTimerEvent *event){
-    j+=2;
+    for(int i=0;i<_cord.size();i++){
+        dado.push_back(((_cord[i] - d_min) / (d_max - d_min)));
+   cout<<"before: "<<_cord[i]<<"     after: "<<dado[i]<<endl;
+    }
     repaint();
 }
+
+void Plotter::setTemp(QVector<long long> _temp){
+    t_max = _temp[0];
+    t_min = _temp[0];
+
+    //acha min e max
+    for(int i=0;i<_temp.size();i++){
+        if(_temp[i] < t_min)
+            t_min = _temp[i];
+
+        if(_temp[i] > t_max)
+            t_max = _temp[i];
+    }
+
+    cout<<"t_max = "<<t_max<<endl;
+    cout<<"t_min = "<<t_min<<endl;
+
+    //manda o numero pra normalizar e dps encaixa no vector
+    for(int i=0;i<_temp.size();i++){
+        tempo.push_back((_temp[i] - t_min) / (t_max - t_min));
+    }
+
+    repaint();
+}
+
+
+//equcao de normalizacao y[i] = (x[i]-min)
+//                               /////////
+//                               (max - min)
+// normalizar coop entre 0 e 1

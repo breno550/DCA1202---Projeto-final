@@ -103,8 +103,8 @@ void MainWindow::getData(){
         QByteArray array;
         QStringList list;
         qint64 thetime;
-        Plotter cord;
-        QVector<int> cordenadas;
+        QVector<long double> cordenadas;
+        QVector<long long> tempo;
         cout << "to get data..." << endl;
         if(socket->state() == QAbstractSocket::ConnectedState){
           if(socket->isOpen()){
@@ -119,15 +119,16 @@ void MainWindow::getData(){
               if(list.size() == 2){
                 bool ok;
                 str = list.at(0);
-                thetime = str.toLongLong(&ok);
+                thetime = str.toLong(&ok);
                 str = list.at(1);
                 resultado = QString::number(thetime);
                 //cout << resultado.toStdString() << ": " << str.toStdString() << endl;
-                cordenadas.push_back(str.toInt());
-
-
+                cordenadas.push_back(str.toDouble());
+                tempo.push_back(thetime);
               }
             }
+                ui->widget->setCorde(cordenadas);
+                ui->widget->setTemp(tempo);
           }
        }
     }
