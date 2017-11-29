@@ -9,7 +9,10 @@ using namespace std;
 #define PI 3.1415
 
 Plotter::Plotter(QWidget *parent) : QWidget(parent){
-
+    for(int i=0;i<30;i++){
+        tempo.push_back(0);
+        dado.push_back(0);
+    }
 }
 
 void Plotter::paintEvent(QPaintEvent *event){
@@ -34,19 +37,31 @@ void Plotter::paintEvent(QPaintEvent *event){
     pen.setColor(QColor(255, 180, 0));
     painter.setPen(pen);
 
-    /*for(int i=0;i<dado.size();i+=2){
-       if(dado.isEmpty()==false && tempo.isEmpty()==false){
-           cout<<"worked";
-           painter.drawLine(tempo[i], dado[i], tempo[i+1], dado[i+1]);
-       }
+    //teste de dados
+    /*cout<<"DADOS:  "<<endl;
+    for(int i=0;i<dado.size();i++){
+        cout<<dado[i]<<endl;
+    }
+    cout<<"TEMPO:    "<<endl;
+    for(int i=0;i<tempo.size();i++){
+        cout<<tempo[i]<<endl;
     }*/
-    //painter.drawLine(1,4,width(), 0);
+
+    double x1=0, x2, y1=0, y2;
+    for(int i=0;i<tempo.size()-1;i++){
+        x1 = tempo[i] * width();
+        y1 =height() * (1 - dado[i]);
+
+        x2=tempo[i+1] * width();
+        y2=height()*(1-dado[i+1]);
+        painter.drawLine(x1, y1, x2, y2);
+    }
 }
 
 void Plotter::setCorde(QVector<long double> _cord){
     d_max = _cord[0];
     d_min = _cord[0];
-
+    dado.clear();
       //acha min e max
     for(int i=0;i<_cord.size();i++){
         if(_cord[i] < d_min)
@@ -71,7 +86,7 @@ void Plotter::setCorde(QVector<long double> _cord){
 void Plotter::setTemp(QVector<long long> _temp){
     t_max = _temp[0];
     t_min = _temp[0];
-
+    tempo.clear();
     //acha min e max
     for(int i=0;i<_temp.size();i++){
         if(_temp[i] < t_min)
@@ -86,7 +101,7 @@ void Plotter::setTemp(QVector<long long> _temp){
 
     //manda o numero pra normalizar e dps encaixa no vector
     for(int i=0;i<_temp.size();i++){
-        tempo.push_back((_temp[i] - t_min) / (t_max - t_min));
+        tempo.push_back((long double)(_temp[i] - t_min) / (t_max - t_min));
     }
 
     repaint();
