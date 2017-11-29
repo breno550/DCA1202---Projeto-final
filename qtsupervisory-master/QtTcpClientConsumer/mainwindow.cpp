@@ -64,7 +64,7 @@ void MainWindow::updatelist(){
 
 void MainWindow::startdata(){
     if(timerId==0){
-        timerId= startTimer(ui->horizontalSlider->value());
+        timerId = startTimer(ui->horizontalSlider->value());
         cout << "timer criado" << endl;
     } else {
         killTimer(timerId);
@@ -105,6 +105,8 @@ void MainWindow::getData(){
         qint64 thetime;
         QVector<long double> cordenadas;
         QVector<long long> tempo;
+        cordenadas.clear();
+        tempo.clear();
         cout << "to get data..." << endl;
         if(socket->state() == QAbstractSocket::ConnectedState){
           if(socket->isOpen()){
