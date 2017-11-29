@@ -119,7 +119,7 @@ void MainWindow::getData(){
               if(list.size() == 2){
                 bool ok;
                 str = list.at(0);
-                thetime = str.toLong(&ok);
+                thetime = str.toDouble(&ok);
                 str = list.at(1);
                 resultado = QString::number(thetime);
                 //cout << resultado.toStdString() << ": " << str.toStdString() << endl;

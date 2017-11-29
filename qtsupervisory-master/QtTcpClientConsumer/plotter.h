@@ -8,9 +8,10 @@ class Plotter : public QWidget
     Q_OBJECT
 private:
     long double d_max=0, d_min=0;
-    long long t_max=0, t_min=0;
+    ///deixar essa vadia longdouble
+    long t_max=0, t_min=0;
     QVector<long double> dado;
-    QVector<long long> tempo;
+    QVector<long double> tempo;
 public:
     explicit Plotter(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
