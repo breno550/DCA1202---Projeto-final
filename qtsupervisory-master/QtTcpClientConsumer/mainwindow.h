@@ -31,6 +31,7 @@ public slots:
   void stopdata();
   void tcpConnect();
   void getList();
+  void buttons();
 
 private:
   Ui::MainWindow *ui;

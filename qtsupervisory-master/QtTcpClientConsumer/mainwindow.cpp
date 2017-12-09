@@ -40,13 +40,21 @@ MainWindow::MainWindow(QWidget *parent):
           this,
           SLOT(updatelist()));
 
+  connect(ui->listWidget,
+          SIGNAL(itemActivated(QListWidgetItem*)),
+          this,
+          SLOT(buttons()));
+
+}
+
+void MainWindow::buttons(){
+    ui->pushButton_start->setEnabled(true);
+    ui->pushButton_stop->setEnabled(true);
 }
 
 void MainWindow::connectIP(){
-    ui->pushButton_start->setEnabled(true);
-    ui->pushButton_stop->setEnabled(true);
-
-    MainWindow::tcpConnect();
+    tcpConnect();
+    getList();
 }
 
 void MainWindow::disconnectIP(){
@@ -59,23 +67,43 @@ void MainWindow::disconnectIP(){
 
 void MainWindow::updatelist(){
     ui->listWidget->clear();
-    MainWindow::getList();
+    getList();
+}
+
+void MainWindow::getList(){
+    QStringList items;
+    QString str;
+    if(socket->state() == QAbstractSocket::ConnectedState){
+        if(socket->isOpen()){
+            cout << "getting list" << endl;
+            socket->write("list");
+            socket->waitForBytesWritten(3000);
+            socket->waitForReadyRead(3000);
+            cout << socket->bytesAvailable() << "bytes avaiable" << endl;
+            while(socket->bytesAvailable()){
+                str = socket->readLine().replace("\r", "").replace("\n", "");
+                items << str;
+                //cout << str.toStdString()<<endl;
+            }
+        }
+        ui->listWidget->addItems(items);
+    }
 }
 
 void MainWindow::startdata(){
     if(timerId==0){
         timerId = startTimer(ui->horizontalSlider->value());
         cout << "timer criado" << endl;
-    } else {
-        killTimer(timerId);
-        timerId = startTimer(ui->horizontalSlider->value());
-        cout << "timer criado" << endl;
-    }
+        } else {
+            killTimer(timerId);
+            timerId = startTimer(ui->horizontalSlider->value());
+            cout << "timer criado" << endl;
+        }
 }
 
 
 void MainWindow::timerEvent(QTimerEvent * q){
-    MainWindow::getData();
+    getData();
 }
 
 void MainWindow::stopdata(){
@@ -112,8 +140,8 @@ void MainWindow::getData(){
           if(socket->isOpen()){
             cout << "reading..." << endl;
             socket->write(get_data.toStdString().c_str());
-            socket->waitForBytesWritten();
-            socket->waitForReadyRead();
+            socket->waitForBytesWritten(3000);
+            socket->waitForReadyRead(3000);
             cout << socket->bytesAvailable() << "bytes avaiable" << endl;
             while(socket->bytesAvailable()){
               str = socket->readLine().replace("\n","").replace("\r","");
@@ -136,27 +164,7 @@ void MainWindow::getData(){
     }
 }
 
-void MainWindow::getList(){
-    QString str;
-    if(socket->state() == QAbstractSocket::ConnectedState){
-        if(socket->isOpen()){
-            cout << "getting list" << endl;
-            socket->write("list");
-            socket->waitForBytesWritten();
-            socket->waitForReadyRead();
-            cout << socket->bytesAvailable() << "bytes avaiable" << endl;
-            while(socket->bytesAvailable()){
-                str = socket->readLine().replace("\r", "").replace("\n", "");
-                cout << str.toStdString()<<endl;
-                ui->listWidget->addItem(str);
-            }
-        }
-    }
-}
-
-
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow(){
   delete socket;
   delete ui;
 }
